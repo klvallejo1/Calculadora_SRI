@@ -2,12 +2,14 @@ const express = require('express');
 
 //Creacion del servidor
 const app = express();
+const cors = require('cors');
 
-//Definicion de ruta principal
-app.get('/', (req, res) => {
-    res.send('Hola Mundo');
-});
+require('./database');
 
-app.listen(4000, () => {
-    console.log('El servidor esta corriendo!!');
-});
+app.use(cors());
+app.use(express.json());
+
+app.use('/api-user', require('./routes/server-routes'));
+
+app.listen('3000');
+console.log('Server corriendo en el puerto', 3000);
