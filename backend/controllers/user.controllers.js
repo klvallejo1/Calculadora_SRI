@@ -47,8 +47,8 @@ userController.loginUser = async (req, res) => {
     }
 };
 
-userController.getTasks = async (req, res) => 
-    { res.json([
+userController.getTasks = async (req, res) => {
+    res.json([
         {
             _id: 1,
             name: 'Tarea1',
@@ -65,6 +65,23 @@ userController.getTasks = async (req, res) =>
             descripcion: 'Informacion tarea3'
         }
     ])
+}
+
+function verificarToken(req, res, next) {
+
+    console.log(req.headers.authorization);
+    if (!req.headers.authorization) {
+        return res.status(401).send("No tiene autorización para continuar");
+    }
+    const
+        token = req.headers.authorization.split(' ')[1]
+    if (token == 'null') {
+        return res.status(401).send("No existe token");
+    }
+    const payload = jwt.verify(token, 'secretkey');
+    console.log(payload);
+    req.userId = payload._id;
+    next();
 }
 
 module.exports = userController;
