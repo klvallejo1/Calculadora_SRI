@@ -47,4 +47,24 @@ userController.loginUser = async (req, res) => {
     }
 };
 
+userController.getTasks = async (req, res) => 
+    { res.json([
+        {
+            _id: 1,
+            name: 'Tarea1',
+            descripcion: 'Informacion tarea1'
+        },
+        {
+            _id: 2,
+            name: 'Tarea2',
+            descripcion: 'Informacion tarea2'
+        },
+        {
+            _id: 3,
+            name: 'Tarea3',
+            descripcion: 'Informacion tarea3'
+        }
+    ])
+}
+
 module.exports = userController;
