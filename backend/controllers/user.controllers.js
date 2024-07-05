@@ -19,7 +19,7 @@ userController.loginUser = async (req, res) => {
         if (!user) {
             return res.status(401).send("El correo no existe");
         }
-        
+
         const isPasswordValid = bcrypt.compareSync(password, user.password);
         if (!isPasswordValid) {
             return res.status(401).send("Clave incorrecta");
@@ -57,7 +57,10 @@ userController.loginUserSimple = async (req, res) => {
         return res.json({ error: 'Error en el usuario o contraseña' });
     }
 
-    res.json({ success: 'Login correcto!' });
+    res.json({
+        success: 'Login correcto!',
+        token: createToken(user)
+    });
 };
 
 userController.getTasks = async (req, res) => {
@@ -79,6 +82,16 @@ userController.getTasks = async (req, res) => {
         }
     ])
 };
+
+function createToken(User) {
+    const payload = {
+        user_id: User._id,
+        user_role: User.user_role
+    }
+
+    return jwt.sign(payload, 'UPS');
+
+}
 
 function verificarToken(req, res, next) {
     console.log(req.headers.authorization);
