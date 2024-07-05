@@ -1,10 +1,13 @@
-// SE REQUIEREN LOS DOS METODOS SCHEMA Y MODEL
 const {Schema, model} = require ('mongoose');
 
 //El schema contiene un objeto definicion de los datos que se estan guardando
 const userSchema = new Schema({
     email: String,
-    password: String
+    password: String,
+    role: {
+        type: String,
+        default: 'regular'
+    }
 },{
     timestamps: true //se agrega en la base un campo llamado createdup y updateup 
 });
