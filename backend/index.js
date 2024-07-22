@@ -15,10 +15,10 @@ app.use(express.json({ extended: true }));
 app.use(require('./routes/server-routes.js'));
 
 //Puerto
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 80;
 
 // Arrancar la app
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
     console.log(`El servidor está funcionando en el puerto ${PORT}`);
 });
 
