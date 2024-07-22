@@ -1,5 +1,16 @@
 const mongoose=require('mongoose');
 
+const dbUri= 'mongodb+srv://kevin:w0UgQPIby5pdegRI@cluster0.091j0yh.mongodb.net/MeanImpuestos'
+
+mongoose.connect(dbUri)
+  .then(() => {
+    console.log('Conexión a MongoDB Atlas exitosa');
+  })
+  .catch((error) => {
+    console.error('Error conectándose a MongoDB Atlas:', error);
+  });
+
+/*
 require('dotenv').config({path: 'variables.env'});
 
 const conectarDB= async() => {
@@ -18,7 +29,7 @@ const conectarDB= async() => {
         
     }
 }
-module.exports= conectarDB;
+module.exports= conectarDB;*/
 
 /*
 const URI= 'mongodb://localhost:27017/angular-auth';
