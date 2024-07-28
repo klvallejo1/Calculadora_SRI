@@ -21,15 +21,3 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, '0.0.0.0', () => {
     console.log(`El servidor está funcionando en el puerto ${PORT}`);
 });
-
-
-/*
-require('./database');
-
-app.use(cors());
-app.use(express.json());
-
-app.use('/api-user', require('./routes/server-routes'));
-
-app.listen('3000');
-console.log('Server corriendo en el puerto', 3000);*/
